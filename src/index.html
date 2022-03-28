@@ -1,0 +1,126 @@
+@@include('./html-parts/html-links.html', { 'title': "Home" })
+<div id="site">
+  @@include('./html-parts/header.html')
+
+  <main class="main" id="content">
+      <canvas id="canvas-complex"></canvas>
+
+      <section class="example-section">
+          <div class="container">
+              <h2 class="title">Примеры:</h2>
+
+              <div class="example">
+                  <h3 class="title-h3">Weather</h3>
+
+                  <div class="weather">
+                      <input class="weather__search" type="text" placeholder="City name">
+                      <span>Location:</span>
+                      <p class="weather__name">Kiev</p>
+                      <span>Temperature:</span>
+                      <p class="weather__temperature">22&deg;</p>
+                      <span>Temperature minimum:</span>
+                      <p class="weather__temperature-min">22&deg;</p>
+                      <span>Temperature maximum:</span>
+                      <p class="weather__temperature-max">22&deg;</p>
+                      <span>Description:</span>
+                      <p class="weather__info"><img src="" alt="" class="icon"><span>Clouds</span></p>
+                      <span>Wind speed:</span>
+                      <p class="weather__speed">1</p>
+                      <button class="weather__btn">Go</button>
+
+                  </div>
+                  <!-- /.weather -->
+              </div>
+              <!-- /.example -->
+
+              <div class="example">
+                  <h3 class="title-h3">Аккордеон</h3>
+
+                  <div class="accordion">
+                      <button class="accordion-btn">Element 1</button>
+                      <div class="accordion-item">
+                          <p>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                          </p>
+                      </div>
+                      <!-- /.accordion-item -->
+                      <button class="accordion-btn">Element 2</button>
+                      <div class="accordion-item">
+                          <p>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                          </p>
+                      </div>
+                      <!-- /.accordion-item -->
+                      <button class="accordion-btn">Element 3</button>
+                      <div class="accordion-item">
+                          <p>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                          </p>
+                      </div>
+                      <!-- /.accordion-item -->
+                  </div>
+                  <!-- /.accordion -->
+
+
+              </div>
+              <!-- /.example -->
+
+              <div class="example">
+                  <h3 class="title-h3">Табы</h3>
+
+                  <div class="tab-links">
+                      <button class="tab-link tab-link--active">Element 1</button>
+                      <button class="tab-link">Element 2</button>
+                      <button class="tab-link">Element 3</button>
+                  </div>
+                  <!-- /.tab-links -->
+                  <div class="tab-wrap">
+                      <div class="tab-item tab-item--active">
+                          <p>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                          </p>
+                      </div>
+                      <div class="tab-item">
+                          <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim facilisis gravida neque convallis a cras semper. Et tortor at risus viverra adipiscing at in tellus integer.
+                          </p>
+                      </div>
+                      <div class="tab-item">
+                          <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et malesuada. Leo vel fringilla est ullamcorper eget. Aliquam sem et tortor consequat id. Tincidunt lobortis feugiat vivamus at augue eget.
+                          </p>
+                      </div>
+                  </div>
+                  <!-- /.tab-wrap -->
+              </div>
+              <!-- /.example -->
+
+              <div class="example">
+                  <h3 class="title-h3">Модальное окно</h3>
+                  <button class="toggle-popup popup-button">Open</button>
+
+                  <div class="popup">
+                      <div class="popup-item">
+                          <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tristique senectus et netus et malesuada. Leo vel fringilla est ullamcorper eget. Aliquam sem et tortor consequat id. Tincidunt lobortis feugiat vivamus at augue eget.
+                          </p>
+                          <button class="close-popup popup-btn-close">x</button>
+                      </div>
+                      <!-- /.popup-item -->
+
+                  </div>
+                  <!-- /.popup -->
+              </div>
+              <!-- /.example -->
+
+          </div>
+          <!-- /.container -->
+      </section>
+      <!-- /.example -->
+
+  </main>
+
+
+  @@include('./html-parts/footer.html')
+</div>
+@@include('./html-parts/html-scripts-src.html')

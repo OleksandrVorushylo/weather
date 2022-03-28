@@ -1,0 +1,419 @@
+@use "sass:math";
+$color-bg: #182722;
+$color-main: #00e091;
+body {
+    position: relative;
+    min-width: 320px;
+    margin: auto;
+    font-family: $font-main;
+    font-weight: 500;
+
+    &.disabled {
+        overflow-y: scroll;
+        position: fixed;
+        width: 100%;
+    }
+}
+#canvas-complex {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#site {
+    position: relative;
+    overflow-x: hidden;
+
+}
+
+%default-transition {
+    transition: ease-in-out 0.25s;
+}
+.container {
+    margin: 0 auto;
+    max-width: 1800px;
+    width: perc(1800);
+    display: flex;
+    flex-direction: column;
+}
+.main {
+    ////background-color: #0093E9;
+    //background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    //background-size: cover;
+    min-height: 100vh;
+}
+
+.links {
+    width: 100%;
+}
+
+.title {
+    font-weight: 700;
+    @include adaptive-value("font-size", 60px, 22px);
+    margin: 0 auto;
+    @include adaptive-value("margin-top", 30px, 20px);
+    @include adaptive-value("margin-bottom", 30px, 20px);
+    text-align: center;
+}
+.title-h3 {
+    font-weight: 600;
+    @include adaptive-value("font-size", 28px, 18px);
+    text-align: center;
+    margin: 0 auto;
+    @include adaptive-value("margin-bottom", 60px, 30px);
+}
+.flex-row-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    width: 100%;
+    @include media(1450) {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    @include media(768) {
+        padding: 0;
+    }
+
+}
+.flex-item {
+    background-color: $color-white;
+    @include adaptive-value("width", 160px, 60px);
+    @include adaptive-value("height", 200px, 100px);
+    @include flex-calc(10, 20);
+    @include adaptive-padding(20px 5px, 20px 5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $color-black;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+        background: $color-lightgrey;
+        transition: all 0.3s ease;
+        box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    }
+    @include media(1450) {
+        flex-wrap: wrap;
+        width: 18%;
+        &:nth-child(5) {
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+    }
+    @include media(768) {
+        width: 35%;
+        @include adaptive-value("height", 200px, 120px);
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        margin-bottom: 20px !important;
+    }
+}
+.item-name {
+    @include adaptive-value("font-size", 16px, 12px);
+    @include adaptive-value("margin-top", 30px, 15px);
+    text-align: center;
+    width: 100%;
+}
+.item-icon {
+    @include adaptive-value("width", 80px, 60px);
+    @include adaptive-value("height", 80px, 60px);
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+.text-icon {
+    border-radius: 5px;
+    background: $gradient-green-cyan;
+    color: $color-white;
+    @include adaptive-value("font-size", 40px, 14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &--9 {
+    border-radius: 30% 70% 70% 30% / 30% 27% 73% 70% ;
+    }
+
+}
+
+
+.example-section {
+
+}
+.example {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    @include adaptive-padding(100px 30px, 50px 10px);
+    @include adaptive-value("border-radius", 20px, 8px);
+    background-color: $color-lightgrey;
+    @include adaptive-value("margin-bottom", 40px, 20px);
+}
+
+
+
+
+// Базовые стили настроек функций
+
+// accordion
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    &-btn {
+        cursor: pointer;
+        width: 100%;
+        outline: none;
+        transition: 0.4s;
+        border: none;
+        padding: 20px;
+        &--active{
+            background-color: lightgrey;
+        }
+    }
+    &-item {
+        width: 100%;
+        height: 0px;
+        overflow: hidden;
+        transition: 0.4s;
+        padding: 0 20px;
+        &--active{
+            padding: 20px;
+            height: auto;
+        }
+    }
+}
+
+// tabs
+
+.tab-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.tab-link {
+    width: 30%;
+    cursor: pointer;
+    outline: none;
+    transition: 0.4s;
+    border: none;
+    padding: 20px;
+    &--active{
+        background-color: lightgrey;
+    }
+}
+.tab-wrap {
+    padding: 20px;
+    width: 100%;
+    height: auto;
+}
+.tab-item {
+    display: none;
+    &--active {
+        display: flex;
+    }
+}
+
+// popup
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        opacity: 0.4;
+    }
+}
+.popup-item {
+    position: absolute;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+
+    width: 400px;
+    height: auto;
+    padding: 40px;
+
+}
+.popup-btn-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+.popup-button {
+    padding: 20px 40px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.4s;
+    border: none;
+    margin: 0 auto;
+    &:hover {
+        background: lightgrey;
+        transition: 0.4s;
+    }
+}
+
+
+.weather {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.9);
+    @include adaptive-padding(50px 10px, 50px 10px);
+    @include adaptive-value("border-radius", 50px, 10px);
+    input {
+        background: transparent;
+        @include adaptive-value("border-radius", 10px, 6px);
+        @include adaptive-value("height", 60px, 40px);
+        @include adaptive-padding(20px 10px, 30px 10px);
+        width: 100%;
+        max-width: 500px;
+        border: 1px solid $color-white;
+        margin-bottom: 20px;
+        color: $color-white;
+        @include adaptive-value("font-size", 22px, 16px);
+    }
+    p {
+        @include adaptive-value("font-size", 22px, 16px);
+        font-family: $font-main;
+        width: 100%;
+        text-align: center;
+        max-width: 500px;
+        color:$color-white;
+        @include adaptive-margin(10px 5px, 10px 5px);
+    }
+    span {
+        color: lightgrey;
+        font-family: $font-main;
+        @include adaptive-value("font-size", 18px, 14px);
+        width: 100%;
+        text-align: center;
+        max-width: 500px;
+    }
+    button {
+        background: $color-purple;
+        border: none;
+        @include adaptive-value("font-size", 22px, 16px);
+        @include adaptive-value("border-radius", 15px, 8px);
+        @include adaptive-value("height", 60px, 40px);
+        @include adaptive-value("padding-left", 50px, 30px);
+        @include adaptive-value("padding-right", 50px, 30px);
+        font-family: $font-main;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s ease;
+        cursor: pointer;
+        color: white;
+        &:hover {
+            transition: 0.5s ease;
+            background: $color-blue;
+            color: black;
+
+        }
+    }
+    &__name {
+        text-transform: capitalize;
+    }
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .icon {
+            max-width: 50px;
+            margin-right: 10px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        span {
+            font-size: inherit !important;
+            color: inherit !important;
+            width: max-content;
+            text-transform: capitalize;
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.flex-block {
+    width: 100%;
+    height: 100vw;
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+    .elem {
+        background: $color-main;
+        @include flex-calc(4, 50);
+        height: 40vw;
+
+        @include adaptive-value("border-radius", 40px, 10px);
+
+        @include adaptive-value("font-size", 42px, 18px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-family: $font-main;
+        font-weight: 700;
+    }
+}
+
