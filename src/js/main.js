@@ -71,102 +71,7 @@ $(document).ready(function ($) {
 
   // ---- ПРИМЕРЫ ФУНКЦИЙ ----
 
-  // Аккордеон
 
-  const accordion = () => {
-    const btn = document.querySelectorAll('.accordion-btn'),
-        item = document.querySelectorAll('.accordion-item');
-    const removeContent = () => {
-      const btnActive = document.querySelectorAll('.accordion-btn--active'),
-          itemActive = document.querySelectorAll('.accordion-item--active');
-      btnActive.forEach((elem)=>{
-        elem.classList.remove('accordion-btn--active');
-      })
-      itemActive.forEach((elem)=>{
-        elem.classList.remove('accordion-item--active');
-      })
-    };
-    if (document.querySelector('.accordion')) {
-      btn.forEach((elem, index) => {
-        elem.addEventListener('click', (event) => {
-          let target = event.target;
-          target = target.closest('.accordion-btn');
-          if (target.closest('.accordion-btn--active')) {
-            elem.classList.remove('accordion-btn--active')
-            item[index].classList.remove('accordion-item--active')
-          } else {
-            removeContent(); // -- Не запускать, если не нужно, что бы предыдущий элемент закрывался автоматически
-            elem.classList.toggle('accordion-btn--active')
-            item[index].classList.toggle('accordion-item--active')
-          }
-        })
-      })
-    }
-  };
-  accordion();
-
-  // Табы
-
-  const tabs = () => {
-    const tabsParent = document.querySelector('.tab-links'),
-        tab = document.querySelectorAll('.tab-link'),
-        tabContent = document.querySelectorAll('.tab-item');
-
-    const toggleTabContent = (index) => {
-      for(let i = 0; i < tabContent.length; i++) {
-        if (index === i) {
-          tab[i].classList.add('tab-link--active')
-          tabContent[i].classList.add('tab-item--active')
-        } else {
-          tab[i].classList.remove('tab-link--active')
-          tabContent[i].classList.remove('tab-item--active')
-        }
-      }
-    }
-    if (document.querySelector('.tab-links')) {
-      tabsParent.addEventListener('click', event => {
-        let target = event.target;
-        target = target.closest('.tab-link');
-        if (target) {
-          tab.forEach((elem, i) => {
-            if (elem === target) {
-              toggleTabContent(i)
-            }
-          })
-        }
-      })
-    }
-  }
-  tabs();
-
-  // Модальное окно
-
-  const popup = () => {
-    const popupBtn = document.querySelectorAll('.toggle-popup'),
-        popup = document.querySelector('.popup'),
-        popupItem = document.querySelector('.popup-item'),
-        popupClose = document.querySelector('.close-popup');
-
-    if (document.querySelector('.popup')) {
-      popupBtn.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          popup.style.display = 'block';
-        })
-      })
-      popup.addEventListener('click', (event) => {
-        let target = event.target;
-        if (target === popupClose) {
-          popup.style.display = 'none';
-        } else {
-          target = target.closest('.popup-item');
-          if (!target) {
-            popup.style.display = 'none';
-          }
-        }
-      })
-    }
-  }
-  popup()
 
   // Погода
 
@@ -233,5 +138,5 @@ $(document).ready(function ($) {
         }
       });
 
-  weather.fetchWeather("Denver");
+  weather.fetchWeather("London");
 });
